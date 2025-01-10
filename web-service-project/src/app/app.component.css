@@ -1,0 +1,14 @@
+.main-layout {
+    display: flex;
+    margin-left: 200px; /* Sidebar width */
+    padding-top: 60px; /* Space for top bar */
+    height: calc(100vh - 60px); /* Adjusted for top bar height */
+  }
+  
+  .mainframe {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #ffffff;
+    overflow-y: auto;
+  }
+  

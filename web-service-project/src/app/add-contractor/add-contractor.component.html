@@ -1,0 +1,15 @@
+<form (ngSubmit)="onSubmit(addForm)" #addForm="ngForm">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" [(ngModel)]="contractor.name" required #name="ngModel">
+  </div>
+
+
+
+  <div class="form-group">
+    <label for="phone">Phone</label>
+    <input type="text" id="phone" name="phone" [(ngModel)]="contractor.phone" required #phone="ngModel">
+  </div>
+
+  <button type="submit" [disabled]="addForm.invalid">Submit</button>
+</form>

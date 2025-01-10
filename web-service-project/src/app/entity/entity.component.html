@@ -1,0 +1,8 @@
+<form (ngSubmit)="onSubmit(addForm)" #addForm="ngForm">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" [(ngModel)]="entity.name" required #name="ngModel">
+    </div>
+    <button type="submit" [disabled]="addForm.invalid">Submit</button>
+</form>
+  

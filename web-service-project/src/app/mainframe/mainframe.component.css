@@ -1,0 +1,12 @@
+.main-layout {
+  display: flex;
+  height: 100vh; /* Full viewport height */
+}
+
+.content {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #ffffff; /* White background for content area */
+  overflow-y: auto; /* Scroll if content overflows */
+  font-family: 'Arial', sans-serif;
+}

@@ -1,0 +1,47 @@
+.sidebar {
+    width: 200px;
+    height: 100vh; /* Full height */
+    background-color: #e0e0e0; /* Light grey background */
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .nav-button {
+    background-color: #d0d0d0; /* Slightly darker grey */
+    color: black; /* Black text */
+    border: none;
+    padding: 10px 15px;
+    text-align: left;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .nav-button:hover {
+    background-color: #b0b0b0; /* Darker grey on hover */
+    transform: translateX(5px); /* Slide effect */
+  }
+  
+  .nav-button:focus {
+    outline: none;
+    box-shadow: 0 0 5px #888;
+  }
+  :host {
+    display: block;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 200px;
+    height: calc(100vh - 60px);
+    background-color: #e0e0e0;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+  }
+  
+  
+  

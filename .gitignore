@@ -1,0 +1,7 @@
+
+
+# Backend specific
+/api-service/node_modules/
+/api-service/dist/
+/api-service/.env
+

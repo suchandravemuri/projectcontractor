@@ -1,0 +1,53 @@
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f0f0f0; /* Light grey background */
+    color: black; /* Black text */
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .logo {
+    font-size: 22px;
+    font-weight: bold;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: black;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .nav-links a:hover {
+    background-color: #dcdcdc; /* Slightly darker grey on hover */
+    color: black;
+  }
+  
+  .active-link {
+    background-color: #b0b0b0; /* Medium grey for active links */
+    font-weight: bold;
+  }
+  :host {
+    display: block;
+    position: fixed; /* Fix at the top */
+    top: 0;
+    left: 0;
+    width: 100%; /* Full width */
+    height: 60px; /* Height of the top bar */
+    background-color: #f0f0f0; /* Light grey background */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Ensure it stays above the sidebar */
+  }
+  
+  
+  
