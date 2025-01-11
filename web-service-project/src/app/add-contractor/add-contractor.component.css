@@ -1,55 +1,75 @@
+/* Center the form on the page */
 .form-container {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  input {
-    width: 100%;
-    padding: 8px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  input.ng-invalid.ng-touched {
-    border-color: red;
-  }
-  
-  button {
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  button:disabled {
-    background-color: #ddd;
-    cursor: not-allowed;
-  }
-  
-  .error-message {
-    color: red;
-    font-size: 12px;
-  }
-  
+  max-width: 500px; /* Set a maximum width for the form */
+  margin: 100px auto; /* Center the form horizontally and add vertical spacing */
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif; /* Consistent font style */
+}
+
+/* Center the heading */
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Style form groups */
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* Style form labels */
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold; /* Bold labels for clarity */
+}
+
+/* Style form inputs */
+input {
+  width: 100%;
+  padding: 10px; /* Larger padding for better UX */
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Ensure consistent padding and borders */
+}
+
+/* Highlight invalid fields */
+input.ng-invalid.ng-touched {
+  border-color: red;
+}
+
+/* Style the submit button */
+button {
+  width: 100%;
+  padding: 12px; /* Larger padding for better appearance */
+  background-color: #4CAF50; /* Green color */
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect for button */
+button:hover {
+  background-color: #45a049; /* Slightly darker green */
+}
+
+/* Disabled button styling */
+button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+/* Center error messages */
+.error-message {
+  color: red;
+  font-size: 12px;
+  text-align: center;
+}

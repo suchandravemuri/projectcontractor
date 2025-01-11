@@ -11,6 +11,7 @@ import { AddContractorFormComponent } from './add-contractor/add-contractor.comp
 import { EntityComponent } from './entity/entity.component';
 import { LocationComponent } from './location/location.component';
 import { WorkorderComponent } from './workorder/workorder.component';
+import { CompletelocationComponent } from './completelocation/completelocation.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { WorkorderComponent } from './workorder/workorder.component';
     EntityComponent,
     FormsModule,
     LocationComponent,
-    WorkorderComponent
+    WorkorderComponent,
+    CompletelocationComponent
   ],
   providers: [
     provideClientHydration(withEventReplay())

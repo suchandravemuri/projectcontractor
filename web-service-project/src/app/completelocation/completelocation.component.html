@@ -1,0 +1,37 @@
+<form (ngSubmit)="onSubmit(addForm)" #addForm="ngForm" class="form-container">
+    <div class="form-group">
+      <div *ngFor="let key of location_keys; let i = index" class="row">
+        <input
+          type="text"
+          disabled
+          [(ngModel)]="location_completion.location"
+          placeholder="{{ locationDropdownValues[key] }}"
+          name="location-{{i}}"
+          class="disabled-input"
+        />
+        <button type="button" class="show-btn" (click)="openPopup(key)">Contractors</button>
+      </div>
+    </div>
+  
+    <div class="modal" *ngIf="showPopup">
+      <div class="modal-content">
+        <h3>Contractor Details</h3>
+        <div class="form-group">
+          <label for="contractor">Contractor</label>
+          <select [(ngModel)]="location_completion.contractor" name="contractor" required #contractor="ngModel">
+            <option *ngFor="let key of keys" [value]="key">
+              {{ contractorDropdownValues[key] }}
+            </option>
+          </select>
+          <div *ngIf="contractor.invalid && contractor.touched" class="error-message">
+            Contractor selection is required.
+          </div>
+        </div>
+        <div class="modal-buttons">
+          <button type="submit" class="submit-btn">Submit</button>
+          <button type="button" class="close-btn" (click)="closePopup()">Close</button>
+        </div>
+      </div>
+    </div>
+  </form>
+  

@@ -1,9 +1,11 @@
 .main-layout {
-    display: flex;
-    margin-left: 200px; /* Sidebar width */
-    padding-top: 60px; /* Space for top bar */
-    height: calc(100vh - 60px); /* Adjusted for top bar height */
-  }
+  display: flex; 
+  height: 100vh;
+  width: 100%;
+  flex-direction: row;
+  margin-left: 850px;
+  margin-top: 180px;
+}
   
   .mainframe {
     flex-grow: 1;

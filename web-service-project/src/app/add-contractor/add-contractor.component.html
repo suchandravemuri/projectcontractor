@@ -1,15 +1,18 @@
-<form (ngSubmit)="onSubmit(addForm)" #addForm="ngForm">
-  <div class="form-group">
-    <label for="name">Name</label>
-    <input type="text" id="name" name="name" [(ngModel)]="contractor.name" required #name="ngModel">
-  </div>
+<div class="form-container">
+  <h2>Add Contractor</h2>
+  <form (ngSubmit)="onSubmit(addForm)" #addForm="ngForm">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" [(ngModel)]="contractor.name" required #name="ngModel">
+      <div *ngIf="name.invalid && name.touched" class="error-message">Name is required.</div>
+    </div>
 
+    <div class="form-group">
+      <label for="phone">Phone</label>
+      <input type="text" id="phone" name="phone" [(ngModel)]="contractor.phone" required #phone="ngModel">
+      <div *ngIf="phone.invalid && phone.touched" class="error-message">Phone is required.</div>
+    </div>
 
-
-  <div class="form-group">
-    <label for="phone">Phone</label>
-    <input type="text" id="phone" name="phone" [(ngModel)]="contractor.phone" required #phone="ngModel">
-  </div>
-
-  <button type="submit" [disabled]="addForm.invalid">Submit</button>
-</form>
+    <button type="submit" [disabled]="addForm.invalid">Submit</button>
+  </form>
+</div>

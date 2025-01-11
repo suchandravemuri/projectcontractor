@@ -1,53 +1,76 @@
-<form (ngSubmit)="onSubmit(addForm)" #addForm="ngForm">
+<form (ngSubmit)="onSubmit(addForm)" #addForm="ngForm" class="form-container">
+    <h2>Create Work Order</h2>
+  
     <div class="form-group">
-      <label for="name">Entity</label>
-      <select [(ngModel)]="work_order.contractor" name = "contractor">
+      <label for="contractor">Entity</label>
+      <select [(ngModel)]="work_order.contractor" name="contractor" required #contractor="ngModel">
         <option *ngFor="let key of keys" [value]="key">
-          {{ contartorDropdownValues[key] }}
+          {{ contractorDropdownValues[key] }}
+        </option>
+      </select>
+      <div *ngIf="contractor.invalid && contractor.touched" class="error-message">
+        Contractor is required.
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="payment_terms">Payment Terms</label>
+      <input
+        type="text"
+        id="payment_terms"
+        [(ngModel)]="work_order.payment_terms"
+        placeholder="Enter payment terms"
+        name="payment_terms"
+        required
+        #paymentTerms="ngModel"
+      />
+      <div *ngIf="paymentTerms.invalid && paymentTerms.touched" class="error-message">
+        Payment terms are required.
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="due_date">Due Date</label>
+      <input
+        type="date"
+        id="due_date"
+        [(ngModel)]="work_order.due_date"
+        name="due_date"
+        required
+        #dueDate="ngModel"
+      />
+      <div *ngIf="dueDate.invalid && dueDate.touched" class="error-message">
+        Due date is required.
+      </div>
+    </div>
+  
+    <h3>Locations</h3>
+    <div *ngFor="let location of work_order.locations; let i = index" class="location-row">
+      <select [(ngModel)]="location.location" name="location-{{i}}" required #loc="ngModel">
+        <option *ngFor="let key of location_keys" [value]="key">
+          {{ locationDropdownValues[key] }}
         </option>
       </select>
       <input
-          type="text"
-          [(ngModel)]="work_order.payment_terms"
-          placeholder="Payment terms"
-          name="payment_terms"
-        />
-        <input
-          type="date"
-          [(ngModel)]="work_order.due_date"
-          placeholder="Due date"
-          name="due_date"
-        />
-      <div *ngFor="let location of work_order.locations; let i = index" class="row">
-        <select [(ngModel)]="location.location" name="location-{{i}}">
-          <option *ngFor="let key of location_keys" [value]="key">
-            {{ locationDropdownValues[key] }}
-          </option>
-        </select>
-      
-        <input
-          type="text"
-          [(ngModel)]="location.rate"
-          placeholder="Rate"
-          name="rate-{{i}}"
-        />
-      
-        <input
-          type="text"
-          [(ngModel)]="location.qty"
-          placeholder="Quantity"
-          name="qty-{{i}}"
-        />
-      
-        <button (click)="removeContractor(i)">Remove</button>
-      </div>
-      
-      <button (click)="addContractor()">Add</button>
-      
-      
+        type="text"
+        [(ngModel)]="location.rate"
+        placeholder="Rate"
+        name="rate-{{i}}"
+        required
+        #rate="ngModel"
+      />
+      <input
+        type="text"
+        [(ngModel)]="location.qty"
+        placeholder="Quantity"
+        name="qty-{{i}}"
+        required
+        #qty="ngModel"
+      />
+      <button type="button" class="remove-btn" (click)="removeContractor(i)">Remove</button>
     </div>
-
-
-    <button type="submit" [disabled]="addForm.invalid">Submit</button>
-</form>
+    <button type="button" class="add-btn" (click)="addContractor()">Add Location</button>
+  
+    <button type="submit" [disabled]="addForm.invalid" class="submit-btn">Submit</button>
+  </form>
   

@@ -5,21 +5,20 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-location',
+  selector: 'app-completelocation',
   imports: [FormsModule,CommonModule],
-  templateUrl: './workorder.component.html',
-  styleUrl: './workorder.component.css'
+  templateUrl: './completelocation.component.html',
+  styleUrl: './completelocation.component.css'
 })
-export class WorkorderComponent {
+export class CompletelocationComponent {
   contractorDropdownValues: { [key: string]: string } = {};
   locationDropdownValues: { [key: string]: string } = {};
+  showPopup = false;
   keys: string[] = [];
   location_keys = Object.keys(this.locationDropdownValues);
-  work_order = {
-    contractor: '',
-    payment_terms: '',
-    due_date: '',
-    locations: [{ location: '', rate: '', qty: '' }],
+  location_completion = {
+    location : "",
+    contractor : "",
   };
 
   constructor(private dataService: DataService, private http: HttpClient) {}
@@ -27,15 +26,17 @@ export class WorkorderComponent {
   ngOnInit(): void {
     this.dataService.getContractorDropdownValues().subscribe(
       (data) => {
+        // If data is an array, convert it to an object with key-value pairs
         if (Array.isArray(data)) {
           this.contractorDropdownValues = data.reduce((acc, item) => {
             acc[item.key] = item.value;
             return acc;
           }, {} as { [key: string]: string });
         } else {
+          // If data is already an object, assign it directly
           this.contractorDropdownValues = data;
         }
-        this.keys = Object.keys(this.contractorDropdownValues);
+        this.keys = Object.keys(this.contractorDropdownValues); // Get keys for the dropdown
       },
       (error) => {
         console.error('Error fetching dropdown values', error);
@@ -59,18 +60,38 @@ export class WorkorderComponent {
       (error) => {
         console.error('Error fetching dropdown values', error);
       }
-    );
+    );    
   }
 
-  addContractor(): void {
-    this.work_order.locations.push({ location: '', rate: '', qty: '' });
+  openPopup(location: string): void {
+    this.fetchContractors(location);
+    this.showPopup = true;
   }
 
-  removeContractor(index: number): void {
-    this.work_order.locations.splice(index, 1);
+  closePopup(): void {
+    this.showPopup = false;
+  }
+
+  fetchContractors(location: string): void {
+    this.dataService.getContractorWorkOrderDropdownValues(location).subscribe(
+      (data) => {
+        if (Array.isArray(data)) {
+          this.contractorDropdownValues = data.reduce((acc, item) => {
+            acc[item.key] = item.value;
+            return acc;
+          }, {} as { [key: string]: string });
+        } else {
+          this.contractorDropdownValues = data;
+        }
+        this.keys = Object.keys(this.contractorDropdownValues);
+      },
+      (error) => {
+        console.error('Error fetching dropdown values', error);
+      }
+      );
   }
   onSubmit(form: any): void {
-    this.http.post('http://localhost:3000/api/workorder/addWorkOrder', this.work_order)
+    this.http.post('http://localhost:3000/api/workorder/addWorkOrder', this.location_completion)
       .subscribe(
         response => {
           console.log('Form submitted successfully!', response);

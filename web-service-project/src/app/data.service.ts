@@ -20,4 +20,10 @@ export class DataService {
   getContractorDropdownValues(): Observable<any[]> {
     return this.http.get<{ key: string; value: string }[]>('http://localhost:3000/api/contractors/getContractors');
   }
+
+  getContractorWorkOrderDropdownValues(location: string): Observable<any[]> {
+    return this.http.get<{ key: string; value: string }[]>(
+      `http://localhost:3000/api/contractors/getContractorsWorkOrderMapping?location=${encodeURIComponent(location)}`
+    );
+  }
 }

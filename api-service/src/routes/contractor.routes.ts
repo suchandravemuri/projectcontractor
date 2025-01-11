@@ -13,6 +13,7 @@ export class ContractorRoutes {
   private initializeRoutes() {
     this.router.post('/add', ContractorController.addContractor);
     this.router.get('/getContractors', ContractorController.getContractors);
+    this.router.get('/getContractorsWorkOrderMapping', ContractorController.getContractorsWorkOrderMapping);
     // Add more routes as needed
   }
 }

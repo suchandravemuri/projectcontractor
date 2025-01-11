@@ -1,24 +1,46 @@
-<form (ngSubmit)="onSubmit(addForm)" #addForm="ngForm">
+<form (ngSubmit)="onSubmit(addForm)" #addForm="ngForm" class="form-container">
+    <h2>Add Location</h2>
+  
     <div class="form-group">
-      <label for="name">Entity</label>
-      <select [(ngModel)]="location.entity" name = "entity">
+      <label for="entity">Entity</label>
+      <select [(ngModel)]="location.entity" name="entity" required #entity="ngModel">
         <option *ngFor="let key of keys" [value]="key">
           {{ enitiyDropdownValues[key] }}
         </option>
       </select>
-    </div>
-    <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" id="location_name" name="location_name" [(ngModel)]="location.location_name" required #name="ngModel">
-    </div>
-    <div class="form-group">
-        <label for="name">Entity</label>
-        <select [(ngModel)]="location.state" name = "state">
-          <option *ngFor="let key of state_keys" [value]="key">
-            {{ states[key] }}
-          </option>
-        </select>
+      <div *ngIf="entity.invalid && entity.touched" class="error-message">
+        Entity is required.
       </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="location_name">Location Name</label>
+      <input
+        type="text"
+        id="location_name"
+        name="location_name"
+        [(ngModel)]="location.location_name"
+        required
+        #locationName="ngModel"
+        placeholder="Enter location name"
+      />
+      <div *ngIf="locationName.invalid && locationName.touched" class="error-message">
+        Location Name is required.
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="state">State</label>
+      <select [(ngModel)]="location.state" name="state" required #state="ngModel">
+        <option *ngFor="let key of state_keys" [value]="key">
+          {{ states[key] }}
+        </option>
+      </select>
+      <div *ngIf="state.invalid && state.touched" class="error-message">
+        State is required.
+      </div>
+    </div>
+  
     <button type="submit" [disabled]="addForm.invalid">Submit</button>
-</form>
+  </form>
   
