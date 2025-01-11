@@ -19,7 +19,7 @@ export class WorkorderComponent {
     contractor: '',
     payment_terms: '',
     due_date: '',
-    locations: [{ location: '', payment_terms: '', due_date: '' }],
+    locations: [{ location: '', rate: '', qty: '' }],
   };
 
   constructor(private dataService: DataService, private http: HttpClient) {}
@@ -65,7 +65,7 @@ export class WorkorderComponent {
   }
 
   addContractor(): void {
-    this.work_order.locations.push({ location: '', payment_terms: '', due_date: '' });
+    this.work_order.locations.push({ location: '', rate: '', qty: '' });
   }
 
   removeContractor(index: number): void {

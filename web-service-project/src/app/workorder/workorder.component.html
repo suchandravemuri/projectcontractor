@@ -6,6 +6,18 @@
           {{ contartorDropdownValues[key] }}
         </option>
       </select>
+      <input
+          type="text"
+          [(ngModel)]="work_order.payment_terms"
+          placeholder="Payment terms"
+          name="payment_terms"
+        />
+        <input
+          type="date"
+          [(ngModel)]="work_order.due_date"
+          placeholder="Due date"
+          name="due_date"
+        />
       <div *ngFor="let location of work_order.locations; let i = index" class="row">
         <select [(ngModel)]="location.location" name="location-{{i}}">
           <option *ngFor="let key of location_keys" [value]="key">
@@ -15,16 +27,16 @@
       
         <input
           type="text"
-          [(ngModel)]="location.payment_terms"
-          placeholder="Payment terms"
-          name="payment_terms-{{i}}"
+          [(ngModel)]="location.rate"
+          placeholder="Rate"
+          name="rate-{{i}}"
         />
       
         <input
-          type="date"
-          [(ngModel)]="location.due_date"
-          placeholder="due date"
-          name="dute_date-{{i}}"
+          type="text"
+          [(ngModel)]="location.qty"
+          placeholder="Quantity"
+          name="qty-{{i}}"
         />
       
         <button (click)="removeContractor(i)">Remove</button>
