@@ -49,7 +49,16 @@ export class LocationEntityController {
     }
   }
   static async getLocation(req: Request, res: Response) {
-    console.log("hi");   
+    try{
+        const result = await LocationModel.find();
+        const all_locations = {};
+        result.forEach((location)=>{
+            all_locations[location._id.toString()] = location.location_name;
+        });
+        res.status(200).json(all_locations);
+    }catch(error){
+        res.status(500).json({message: error})
+    } 
   }
 }
 

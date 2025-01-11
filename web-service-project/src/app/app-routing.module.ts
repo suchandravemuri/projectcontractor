@@ -4,6 +4,7 @@ import { AddContractorFormComponent } from './add-contractor/add-contractor.comp
 import { MainframeComponent } from './mainframe/mainframe.component'; // Import MainframeComponent
 import { EntityComponent } from './entity/entity.component';
 import { LocationComponent } from './location/location.component';
+import { WorkorderComponent } from './workorder/workorder.component';
 
 const routes: Routes = [
   // { path: '', redirectTo: '/mainframe', pathMatch: 'full' }, // Default route
@@ -13,7 +14,8 @@ const routes: Routes = [
     children: [
       { path: 'add', component: AddContractorFormComponent },
       { path: 'addEntity', component: EntityComponent },
-      {path:'addLocation', component: LocationComponent}
+      {path:'addLocation', component: LocationComponent},
+      {path:'createWorkOrder', component: WorkorderComponent}
     ]
   }
 ];

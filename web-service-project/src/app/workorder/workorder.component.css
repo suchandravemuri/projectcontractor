@@ -1,0 +1,16 @@
+.row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  select,
+  input {
+    padding: 5px;
+    font-size: 14px;
+  }
+  
+  button {
+    padding: 5px 10px;
+  }
+  

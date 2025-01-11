@@ -10,6 +10,7 @@ import {HttpClientModule} from '@angular/common/http'
 import { AddContractorFormComponent } from './add-contractor/add-contractor.component';
 import { EntityComponent } from './entity/entity.component';
 import { LocationComponent } from './location/location.component';
+import { WorkorderComponent } from './workorder/workorder.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { LocationComponent } from './location/location.component';
     SidebarComponent,
     MainframeComponent,
     TopBarComponent,
-    
+        
   ],
   imports: [
     BrowserModule,
@@ -26,7 +27,8 @@ import { LocationComponent } from './location/location.component';
     AddContractorFormComponent,
     EntityComponent,
     FormsModule,
-    LocationComponent
+    LocationComponent,
+    WorkorderComponent
   ],
   providers: [
     provideClientHydration(withEventReplay())

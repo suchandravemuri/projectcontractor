@@ -17,6 +17,15 @@ export class ContractorController {
   }
 
   static async getContractors(req: Request, res: Response) {
-    console.log("hi");   
+    try {
+      const result = await ContractorModel.find();
+      const all_contractors = {};
+      result.forEach((contractor) => {
+        all_contractors[contractor._id.toString()] = contractor.name;
+      });
+      res.status(200).json(all_contractors);
+    } catch (error) {
+      res.status(500).json({ message: error })
+    }
   }
 }
