@@ -3,7 +3,7 @@ import { DataService } from '../data.service';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-location',
   imports: [FormsModule,CommonModule],
@@ -22,7 +22,7 @@ export class WorkorderComponent {
     locations: [{ location: '', rate: '', qty: '' }],
   };
 
-  constructor(private dataService: DataService, private http: HttpClient) {}
+  constructor(private dataService: DataService, private http: HttpClient, private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.dataService.getContractorDropdownValues().subscribe(
@@ -73,6 +73,7 @@ export class WorkorderComponent {
     this.http.post('http://localhost:3000/api/workorder/addWorkOrder', this.work_order)
       .subscribe(
         response => {
+          this.toastr.success('WOrk order generation is successfully done', 'Success');
           console.log('Form submitted successfully!', response);
         },
         error => {

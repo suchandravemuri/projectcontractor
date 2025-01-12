@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-generatebill',
@@ -10,7 +11,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './generatebill.component.css'
 })
 export class GeneratebillComponent {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private toastr: ToastrService) {}
   entity = {
     name: '',
   };
@@ -19,6 +20,7 @@ export class GeneratebillComponent {
       .subscribe(
         response => {
           console.log('Form submitted successfully!', response);
+          this.toastr.success('Bill generation initiation successfully done', 'Success');
         },
         error => {
           console.error('Error submitting form:', error);

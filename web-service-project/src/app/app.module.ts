@@ -13,6 +13,8 @@ import { LocationComponent } from './location/location.component';
 import { WorkorderComponent } from './workorder/workorder.component';
 import { CompletelocationComponent } from './completelocation/completelocation.component';
 import { GeneratebillComponent } from './generatebill/generatebill.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Required for Toastr
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { GeneratebillComponent } from './generatebill/generatebill.component';
     LocationComponent,
     WorkorderComponent,
     CompletelocationComponent,
-    GeneratebillComponent
+    GeneratebillComponent,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     provideClientHydration(withEventReplay())

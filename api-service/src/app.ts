@@ -7,6 +7,9 @@ import {workOrderRoutes} from './routes/workorder.routes';
 import {generateBillRoutes} from './routes/generatebill.routes';
 import cors from 'cors';
 import mongoose from 'mongoose';
+import { pollQueue } from './polling';
+
+pollQueue();
 
 const app = express();
 dotenv.config();

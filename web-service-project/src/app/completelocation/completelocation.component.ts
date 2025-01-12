@@ -3,7 +3,7 @@ import { DataService } from '../data.service';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-completelocation',
   imports: [FormsModule,CommonModule],
@@ -21,7 +21,7 @@ export class CompletelocationComponent {
     completed_by : "",
   };
 
-  constructor(private dataService: DataService, private http: HttpClient) {}
+  constructor(private dataService: DataService, private http: HttpClient,private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.dataService.getContractorDropdownValues().subscribe(
@@ -95,6 +95,7 @@ export class CompletelocationComponent {
     this.http.post('http://localhost:3000/api/locationentity/completeLocation', this.location_completion)
       .subscribe(
         response => {
+          this.toastr.success('location completed successfully', 'Success');
           console.log('Form submitted successfully!', response);
         },
         error => {
