@@ -2,8 +2,9 @@ import { Request, Response } from 'express';
 import ContractorModel from '../models/contractor';
 import LocationModel from '../models/location';
 import bills from '../models/bills';
+import billnumber from '../models/billnumber';
 import workOrder from '../models/workorder';
-import { SQS } from 'aws-sdk';
+import { NetworkFirewall, SQS } from 'aws-sdk';
 import PDFDocument from 'pdfkit';
 import fs from 'fs';
 import AWS from 'aws-sdk';
@@ -50,18 +51,30 @@ export class GenerateBillControllerController {
         }
       }
       const contractor_keys =  Object.keys(contractors);
+      const current_bill_number = await billnumber.findOne();
+      let current_number = current_bill_number.current_number;
       for(let k=0 ;k<contractor_keys.length; k++){
+        let bill = new bills();
         let total_value = 0;
         let contractor_locations = contractors[contractor_keys[k]].locations;
         for(let i =0 ; i< contractor_locations.length; i++){
           total_value += (contractor_locations[i].rate * contractor_locations[i].qty);
         }
         contractors[contractor_keys[k]].total_value = total_value;
-        console.log("final contractors list");
-        console.log(contractors);     
-        await this.generatePDF(contractors,  process.env.local_path + "/" +  contractor_keys[k] + '.pdf');
-        await this.uploadToS3(process.env.local_path + "/" +  contractor_keys[k] + '.pdf',  contractor_keys[k] + '.pdf' );
+        console.log(contractors);
+        console.log("finalll");
+        bill.billNumber = "BILL_"+ current_number;
+        current_number += 1;
+        bill.contractorId = contractor_keys[k];
+        await this.generatePDF(contractors,  process.env.local_file_path + "/"+ contractor_keys[k] + '.pdf' );
+        let s3_details = await this.uploadToS3(process.env.local_file_path + "/"+ contractor_keys[k] + '.pdf',  contractor_keys[k] + '.pdf' );
+        bill.s3detials = s3_details;
+        bill.totalAmount = contractors[contractor_keys[k]].total_value;
+        bill.locations =contractors[contractor_keys[k]].locations;
+        await bill.save();
       }
+      current_bill_number.current_number = current_number;
+      await current_bill_number.save();
     } catch (error) {
       console.error('Error sending message:', error);
     }
