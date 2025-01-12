@@ -7,6 +7,7 @@ const locationSchema = new Schema({
   location_name: String,
   state : Number,
   work_orders: Array,
+  completed_by: String,
 });
 
 const Location = mongoose.model('location', locationSchema);

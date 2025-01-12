@@ -60,5 +60,21 @@ export class LocationEntityController {
         res.status(500).json({message: error})
     } 
   }
+
+  static async completeLocation(req: Request, res: Response) {
+    try{
+        const location_id = req.body.location;
+        const completed_by = req.body.completed_by;
+        const update = {
+            state: 2,
+            completed_by: completed_by
+        };
+        console.log(location_id);
+        await LocationModel.findByIdAndUpdate(location_id, update);
+        res.status(200).json("updated successfully;");
+    }catch(error){
+        res.status(500).json({message: error})
+    } 
+  }
 }
 

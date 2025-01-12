@@ -3,7 +3,8 @@ import * as dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import { contractorRoutes } from './routes/contractor.routes';
 import {locationEntityRoutes} from './routes/locationentity.routes'
-import {workOrderRoutes} from './routes/workorder.routes'
+import {workOrderRoutes} from './routes/workorder.routes';
+import {generateBillRoutes} from './routes/generatebill.routes';
 import cors from 'cors';
 import mongoose from 'mongoose';
 
@@ -26,6 +27,7 @@ app.use(express.json());
 app.use('/api/contractors', contractorRoutes);
 app.use('/api/locationentity', locationEntityRoutes);
 app.use('/api/workorder', workOrderRoutes);
+app.use('/api/billgeneration', generateBillRoutes);
 
 
 // Set the port and start the server

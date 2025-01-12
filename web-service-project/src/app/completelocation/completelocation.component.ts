@@ -18,7 +18,7 @@ export class CompletelocationComponent {
   location_keys = Object.keys(this.locationDropdownValues);
   location_completion = {
     location : "",
-    contractor : "",
+    completed_by : "",
   };
 
   constructor(private dataService: DataService, private http: HttpClient) {}
@@ -73,6 +73,7 @@ export class CompletelocationComponent {
   }
 
   fetchContractors(location: string): void {
+    this.location_completion.location = location;
     this.dataService.getContractorWorkOrderDropdownValues(location).subscribe(
       (data) => {
         if (Array.isArray(data)) {
@@ -91,7 +92,7 @@ export class CompletelocationComponent {
       );
   }
   onSubmit(form: any): void {
-    this.http.post('http://localhost:3000/api/workorder/addWorkOrder', this.location_completion)
+    this.http.post('http://localhost:3000/api/locationentity/completeLocation', this.location_completion)
       .subscribe(
         response => {
           console.log('Form submitted successfully!', response);

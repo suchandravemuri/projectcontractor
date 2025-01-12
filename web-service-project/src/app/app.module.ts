@@ -12,14 +12,14 @@ import { EntityComponent } from './entity/entity.component';
 import { LocationComponent } from './location/location.component';
 import { WorkorderComponent } from './workorder/workorder.component';
 import { CompletelocationComponent } from './completelocation/completelocation.component';
+import { GeneratebillComponent } from './generatebill/generatebill.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
     MainframeComponent,
-    TopBarComponent,
-        
+    TopBarComponent,        
   ],
   imports: [
     BrowserModule,
@@ -30,7 +30,8 @@ import { CompletelocationComponent } from './completelocation/completelocation.c
     FormsModule,
     LocationComponent,
     WorkorderComponent,
-    CompletelocationComponent
+    CompletelocationComponent,
+    GeneratebillComponent
   ],
   providers: [
     provideClientHydration(withEventReplay())

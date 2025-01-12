@@ -15,6 +15,7 @@ export class LocationEntityRoutes {
     this.router.get('/entities', LocationEntityController.getEntity);
     this.router.post('/locations', LocationEntityController.addLocation);
     this.router.get('/locations', LocationEntityController.getLocation);
+    this.router.post('/completeLocation', LocationEntityController.completeLocation);
   }
 }
 

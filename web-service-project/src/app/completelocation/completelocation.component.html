@@ -18,7 +18,7 @@
         <h3>Contractor Details</h3>
         <div class="form-group">
           <label for="contractor">Contractor</label>
-          <select [(ngModel)]="location_completion.contractor" name="contractor" required #contractor="ngModel">
+          <select [(ngModel)]="location_completion.completed_by" name="completed_by" required #contractor="ngModel">
             <option *ngFor="let key of keys" [value]="key">
               {{ contractorDropdownValues[key] }}
             </option>
